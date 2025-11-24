@@ -5,9 +5,8 @@ import numpy as np
 from imutils import paths
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
-from keras.models import Sequential
-from keras.layers.convolutional import Conv2D, MaxPooling2D
-from keras.layers.core import Flatten, Dense
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from helpers import resize_to_fit
 
 
@@ -62,7 +61,7 @@ model = Sequential()
 
 # First convolutional layer with max pooling
 model.add(Conv2D(20, (5, 5), padding="same", input_shape=(20, 20, 1), activation="relu"))
-model.add() #edit this
+model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 
 # Second convolutional layer with max pooling
 model.add() #edit this
@@ -83,3 +82,4 @@ model.fit(X_train, Y_train, validation_data=(X_test, Y_test), batch_size=32, epo
 
 # Save the trained model to disk
 model.save(MODEL_FILENAME)
+
